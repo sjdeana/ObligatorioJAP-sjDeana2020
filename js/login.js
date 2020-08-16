@@ -1,6 +1,6 @@
 function goInit(){
-    window.open('index.html');
-    
+   window.open('start.html') ;
+   window.close();
 }
 
 
@@ -10,5 +10,5 @@ function goInit(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-
+   
 });
