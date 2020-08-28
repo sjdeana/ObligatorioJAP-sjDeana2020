@@ -10,5 +10,9 @@ function goInit(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+   document.getElementById("loginButton").addEventListener("click", function (){
    
+   localStorage.setItem('user', document.getElementById('inputEmail').value);
+   
+   });
 });
