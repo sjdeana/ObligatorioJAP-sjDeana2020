@@ -1,5 +1,5 @@
-const ORDER_ASC_BY_PRIECE = "$";
-const ORDER_DESC_BY_PRIECE= "$";
+const ORDER_ASC_BY_PRIECE = "$up";
+const ORDER_DESC_BY_PRIECE= "$down";
 const ORDER_BY_PROD_REL = "Rel.";
 var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
@@ -15,7 +15,7 @@ function sortCategories(criteria, array){
             if ( a.coat < b.cost ){ return 1; }
             return 0;
         });
-    }else if (criteria === ORDER_DESC_BY_NAME){
+    }else if (criteria === ORDER_DESC_BY_PRIECE){
         result = array.sort(function(a, b) {
             if ( a.cost < b.cost ){ return -1; }
             if ( a.cost > b.cost ){ return 1; }
