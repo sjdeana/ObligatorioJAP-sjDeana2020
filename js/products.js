@@ -1,12 +1,17 @@
 const ORDER_ASC_BY_PRIECE = "$up";
 const ORDER_DESC_BY_PRIECE= "$down";
 const ORDER_BY_PROD_REL = "Rel.";
-var currentCategoriesArray = [];
+const serchBar =document.getElementById('serchWord')
+var currentProductsArray = [];
+var auxProducts = [];
+var auxProductsName = [] ;
 var currentSortCriteria = undefined;
 var minCost = undefined;
 var maxCost = undefined;
 
-function sortCategories(criteria, array){
+
+
+function sortProducts(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_PRIECE)
     {
@@ -32,11 +37,50 @@ function sortCategories(criteria, array){
     return result;
 }
 
-function showCategoriesList(){
+
+function findProducts(){
+    
+    var productsName = [] ;
+    var filteredProducts=[];
+    var auxProducts = [];
+
+    
+    
+    for(let i = 0; i < currentProductsArray.length; i++){
+        productsName[i] =currentProductsArray[i].name;
+    }
+    console.log('estoy')
+
+    
+    keyword = serchBar.value.toLowerCase();
+    filteredProductsName = productsName.filter(function(productsName){
+        productsName = productsName.toLowerCase();
+       return productsName.indexOf(keyword) > -1; 
+    });
+
+    for(let i = 0; i < currentProductsArray.length; i++){
+        var j = 0;
+        if( filteredProductsName[j]==currentProductsArray[i].name ){
+            filteredProducts[j] = currentProductsArray[i];
+            j++;
+        }
+    }
+
+    if (serchBar == undefined){
+        currentProductsArray = auxProducts;
+    } 
+
+    currentProductsArray = filteredProducts ;
+
+    showPoductsList();   
+
+}
+
+function showPoductsList(){
 
     let htmlContentToAppend = "";
-    for(let i = 0; i < currentCategoriesArray.length; i++){
-        let category = currentCategoriesArray[i];
+    for(let i = 0; i < currentProductsArray.length; i++){
+        let category = currentProductsArray[i];
 
         if (((minCost == undefined) || (minCost != undefined && category.cost >= minCost)) &&
             ((maxCost == undefined) || (maxCost != undefined && category.cost <= maxCost))){
@@ -65,17 +109,17 @@ function showCategoriesList(){
     }
 }
 
-function sortAndShowCategories(sortCriteria, categoriesArray){
+function sortAndShowProducts(sortCriteria, productsArray){
     currentSortCriteria = sortCriteria;
 
-    if(categoriesArray != undefined){
-        currentCategoriesArray = categoriesArray;
+    if(productsArray != undefined){
+        currentProductsArray = productsArray;
     }
 
-    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
+    currentProductsArray = sortProducts(currentSortCriteria, currentProductsArray);
 
     //Muestro las categorías ordenadas
-    showCategoriesList();
+    showPoductsList();
 }
 
 
@@ -101,20 +145,24 @@ document.addEventListener("DOMContentLoaded", function(e){
    
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
-            sortAndShowCategories(ORDER_ASC_BY_PRIECE, resultObj.data);
+            sortAndShowProducts(ORDER_ASC_BY_PRIECE, resultObj.data);
+            
+            for(let i = 0; i < currentProductsArray.length; i++){
+                auxProductsName[i] =currentProductsArray[i].name;
+            }
         }
     });
 
     document.getElementById("sortAsc").addEventListener("click", function(){
-        sortAndShowCategories(ORDER_ASC_BY_PRIECE);
+        sortAndShowProducts(ORDER_ASC_BY_PRIECE);
     });
 
     document.getElementById("sortDesc").addEventListener("click", function(){
-        sortAndShowCategories(ORDER_DESC_BY_PRIECE);
+        sortAndShowProducts(ORDER_DESC_BY_PRIECE);
     });
 
     document.getElementById("sortByRel").addEventListener("click", function(){
-        sortAndShowCategories(ORDER_BY_PROD_REL);
+        sortAndShowProducts(ORDER_BY_PROD_REL);
     });
 
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
@@ -124,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         minCost = undefined;
         maxCost = undefined;
 
-        showCategoriesList();
+        showPoductsList();
     });
 
     document.getElementById("rangeFilterPrice").addEventListener("click", function(){
@@ -147,8 +195,12 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCost = undefined;
         }
 
-        showCategoriesList();
+        showPoductsList();
     });
+
+    input.addEventListener('keyup', findProducts());
+
+    
     
    
 });
