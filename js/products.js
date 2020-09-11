@@ -86,22 +86,20 @@ function showPoductsList(){
             ((maxCost == undefined) || (maxCost != undefined && category.cost <= maxCost))){
 
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
+            <a href="product-info.html" class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-3">
                     <img src="` + category.imgSrc + `" alt="` + category.desc + `" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">`+ category.name +` - USD `+ category.cost +`</h4>
-                        <small class="text-muted">` + category.soldCount + ` Vendidos</small> 
-                    
-                        
                     </div>
-                    <p class="text-muted"> ` + category.description + `</p>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">`+ category.name +` - USD `+ category.cost +`</h4>
+                            <small class="text-muted">` + category.soldCount + ` Vendidos</small> 
+                        </div>
+                        <p class="text-muted"> ` + category.description + `</p>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </a>
             `
         }
 
@@ -148,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             sortAndShowProducts(ORDER_ASC_BY_PRIECE, resultObj.data);
             
             for(let i = 0; i < currentProductsArray.length; i++){
-                auxProductsName[i] =currentProductsArray[i].name;
+                auxProducts[i] =currentProductsArray[i];
             }
         }
     });
@@ -172,6 +170,12 @@ document.addEventListener("DOMContentLoaded", function(e){
         minCost = undefined;
         maxCost = undefined;
 
+
+
+
+        currentProductsArray = sortProducts(currentSortCriteria, auxProducts);
+
+        //Muestro las categorías ordenadas
         showPoductsList();
     });
 
@@ -198,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         showPoductsList();
     });
 
-    input.addEventListener('keyup', findProducts());
+    
 
     
     
