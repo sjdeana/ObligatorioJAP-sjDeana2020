@@ -1,6 +1,9 @@
 var productsInfoArray = [];
 var commentsArray =[];
+var products =[];
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showInfoProduct () {
     let htmlContentToAppend = "";
     htmlContentToAppend +=`
@@ -39,27 +42,58 @@ function showInfoProduct () {
     showImagesGallery(productsInfoArray.images);
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+function showProductsRelated (){
+  let htmlContentToAppend = "";
+  let k=0;
 
+    for(let i = 0; i < products.length; i++){
+      let relatedProducts = products[i];
+        if ( i == productsInfoArray.relatedProducts[k] ){
+
+        htmlContentToAppend += `
+        <div class="col-md-4">
+          <a href="products.html" class="card mb-4 shadow-sm custom-card">
+            <img class="bd-placeholder-img card-img-top"  src="`+relatedProducts.imgSrc+`">
+            <h3 class="m-3">`+ relatedProducts.name +`</h3>
+          </a>
+        </div>
+        `
+        document.getElementById("relatedProducsId").innerHTML = htmlContentToAppend;
+        k++;
+        }
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showImagesGallery(array){
 
     let htmlContentToAppend = "";
 
-    for(let i = 0; i < array.length; i++){
+
+    htmlContentToAppend = `
+        <div class="carousel-item active">
+        <img src="`+ array[0] +`" class="img-fluid img-thumbnail d-block w-100" >
+        </div>
+        `;
+
+    for(let i = 1; i < array.length; i++){
         let imageSrc = array[i];
+        
+
 
         htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-
+        <div class="carousel-item">
+        <img src="`+ imageSrc +`" class="img-fluid img-thumbnail d-block w-100" >
         </div>
         `
-
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+        
+       
     }
+    document.getElementById("carruselImg").innerHTML = htmlContentToAppend;
+
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showComments (array){
 
   let htmlContentToAppend = "";
@@ -94,7 +128,7 @@ function showComments (array){
     }
    
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 function addComment(){
 
   let h1 = document.getElementById("radio5").checked;
@@ -124,7 +158,7 @@ function addComment(){
   showComments(commentsArray);
 
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -148,6 +182,13 @@ document.addEventListener("DOMContentLoaded", function(e){
           showComments(commentsArray);     
       }
   });
+  getJSONData(PRODUCTS_URL).then(function(resultObj){
+    if (resultObj.status === "ok"){
+        products = resultObj.data;  
+        showProductsRelated();
+           
+    }
+});
 
 
 
