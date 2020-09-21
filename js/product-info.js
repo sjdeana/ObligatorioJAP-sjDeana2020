@@ -47,7 +47,7 @@ function showProductsRelated (){
   let htmlContentToAppend = "";
   let k=0;
 
-    for(let i = 0; i < products.length; i++){
+    for(let i = 0; i < products.length && k < productsInfoArray.relatedProducts.length ; i++){
       let relatedProducts = products[i];
         if ( i == productsInfoArray.relatedProducts[k] ){
 
@@ -63,6 +63,7 @@ function showProductsRelated (){
         k++;
         }
     }
+   
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showImagesGallery(array){
