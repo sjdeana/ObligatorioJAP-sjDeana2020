@@ -49,7 +49,7 @@ function findProducts(){
     for(let i = 0; i < currentProductsArray.length; i++){
         productsName[i] =currentProductsArray[i].name;
     }
-    
+    console.log('estoy')
 
     
     keyword = serchBar.value.toLowerCase();
