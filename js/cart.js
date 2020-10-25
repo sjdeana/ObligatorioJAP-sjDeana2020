@@ -60,7 +60,8 @@ function caculatorCostUnitary(n){
         a = document.getElementById("count"+n+"").value*productscar.articles[n].unitCost;
         showCostUnitary(n,a)
     }else{
-        alert("La cantidad tiene que ser mayor a 1!");
+        alert("La cantidad tiene que ser mayor a o igual 1!");
+        document.getElementById("count"+n+"").value = 1;
         a = productscar.articles[n].unitCost;
         showCostUnitary(n,a)
     }
@@ -119,6 +120,40 @@ function takeAway(i){
 
 }
 
+function showModal(){
+    var bk = document.getElementById('buyKind').value;
+
+    if (bk == 1){  
+        $('#creditModal').modal('show');
+    } 
+    if (bk == 2){ 
+        $('#tranferModal').modal('show'); 
+    }
+}
+function closeModal(){
+    var bk = document.getElementById('buyKind').value;
+
+    if (bk == 1){  
+        $('#creditModal').modal('hide');
+      
+    } 
+    if (bk == 2){ 
+        $('#tranferModal').modal('hide'); 
+        
+    }
+}
+
+function selecNull(){
+    document.getElementById("buyKind").value = "";
+}
+
+
+$("#prospects_form1").submit(function(e) {
+    e.preventDefault();
+});
+$("#prospects_form2").submit(function(e) {
+    e.preventDefault();
+});
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los

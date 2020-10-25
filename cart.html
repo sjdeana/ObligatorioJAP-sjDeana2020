@@ -102,7 +102,7 @@
         </div>
         <dd>Forma de Pago:</dd>
         <div class="input-group mb-3">
-          <select class="custom-select" id="inputGroupSelect01" aria-placeholder="Pago" required >
+          <select class="custom-select" id="buyKind" aria-placeholder="Pago" onchange="showModal();" required >
             <option selected value="">Pago</option>
             <option value="1">Targenta de Credito</option>
             <option value="2">Transferecia Bancaria</option>
@@ -114,6 +114,93 @@
     </div>
   </div>  
  
+
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Modal %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+<!-- Modal 1 -->
+<div class="modal fade" id="creditModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Datos Targeta de Credito</h5>
+        <button type="button" class="close" onclick="selecNull()" data-dismiss="modal"  aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="prospects_form1" onsubmit="closeModal();">
+            <input type="text" aria-label="Nombre en la Tarjeta" placeholder="Nombre en la Tarjeta" class="form-control mb-3" required>
+            <input type="text" aria-label="Banco" placeholder="Banco" class="form-control mb-3" required>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Numero</span>
+              </div>
+              <input type="text"   class="form-control" type="number" maxlength="4" required>
+              <input type="text"   class="form-control" type="number" maxlength="4" required>
+              <input type="text" class="form-control" type="number" maxlength="4" required>
+              <input type="text" class="form-control" type="number" maxlength="4" required>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Fecha de caducidad</span>
+              </div>
+              <input type="text"  placeholder="Dia" class="form-control" type="number" maxlength="2" required>
+              <input type="text"   placeholder="Mes" class="form-control" type="number" maxlength="2" required>
+              <input type="text" placeholder="Año" class="form-control" type="number" maxlength="4" required>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">CCV</span>
+              </div>
+              <input type="text"  class="form-control" type="number" maxlength="3" required>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+        
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal 2 -->
+<div class="modal fade" id="tranferModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Complete el campo para Transaccin</h5>
+        <button type="button" class="close" onclick="selecNull()" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="prospects_form2" onsubmit=" closeModal(); ">
+          <input type="text" aria-label="Nombre" placeholder="Nombre " class="form-control mb-3" required>
+          <input type="text" aria-label="Banco" placeholder="Banco" class="form-control mb-3" required>
+          <div class="input-group mb-3">
+            <select class="custom-select" id="inputSending"  required>
+              <option selected value="">Tipo de cuenta</option>
+              <option  value="1">Caja de Ahorro</option>
+              <option value="2">Cuenta Corriente</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Sucursal</span>
+            </div>
+            <input type="text"   class="form-control" type="number" required>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Numero de Cuenta</span>
+            </div>
+            <input type="text"   class="form-control" type="number"  required>
+          </div>
+          <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
   
