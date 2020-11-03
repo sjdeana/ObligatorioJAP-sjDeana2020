@@ -52,26 +52,67 @@
       </div>
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+
+  <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+  <main role="main" class="pb-5">
+  <div class="text-center pt-5 pb-3 " >
+    <p class="lead">Datos Personales</p>
   </div>
-  <footer class="text-muted bg-light">
+  
+  <div class="mx-auto" style="width: 600px;" >
+    <form onsubmit=" submitDate();return false;">
+      <div class="border border-dark rounded">
+        <div class="container pt-3">
+          <div class="row pb-3">
+            <img src="img/user.png"  class="mx-auto rounded-circle img-responsive" alt="Responsive image" 
+            width="90" height="90" />
+          </div>
+          <div class="row pb-3">
+            <div class="col ">
+              <input type="text" id="nameId" class="form-control" placeholder="Nombre" required>
+            </div>
+            <div class="col">
+              <input type="text" id="surnameId" class="form-control" placeholder="Apellido" required>
+            </div>
+            <div class="col">
+              <input type="number" id="ageId" class="form-control" placeholder="Edad" required>
+            </div>
+          </div>
+          <div class="row pb-3">
+            <div class="col">
+              <input type="text" id="telId" class="form-control" placeholder="Telefono" required>
+            </div>
+          </div>
+          <div class="row pb-3">
+            <div class="col">
+              <input type="email" id="emailId" class="form-control" placeholder="Mail" required>
+            </div>
+          </div>
+          <div class="row pb-3">
+            <div class="col">
+              <button type="submit" class="btn btn-primary " >Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
+
+  
+  <footer class="text-muted bg-light mb-0">
     <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+
     </div>
   </footer>
-  <div class="alert fade alert-success" role="alert" id="alertResult">
-    <span id="resultSpan"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+
+  <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+ 
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

@@ -86,20 +86,17 @@ function showPoductsList(){
             ((maxCost == undefined) || (maxCost != undefined && category.cost <= maxCost))){
 
             htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                    <img src="` + category.imgSrc + `" alt="` + category.desc + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ category.name +` - USD `+ category.cost +`</h4>
-                            <small class="text-muted">` + category.soldCount + ` Vendidos</small> 
-                        </div>
-                        <p class="text-muted"> ` + category.description + `</p>
-                    </div>
+            <div class=" d-flex col-md-4">
+              <a href="product-info.html" class="card mb-5 shadow-sm custom-card">
+                <img class="bd-placeholder-img card-img-top"  src="` + category.imgSrc + `" alt="` + category.desc + `" >
+                <h4 class="ml-3 mt-3 pb-0">`+ category.name +` </h4>
+                <h5 class="ml-3"> USD `+ category.cost +` - <small class="text-muted">(` + category.soldCount + ` Vendidos)</small>  </h5>
+                <div class="card-body">
+                  <p class="card-text">` + category.description + `</p>
+                  
                 </div>
-            </a>
+              </a>
+            </div>
             `
         }
 
