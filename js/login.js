@@ -1,3 +1,5 @@
+var u = { name: "", surname:"" , age: "", tel: "", email:"", img: "img/user1.png" };
+
 function goInit(){
    window.open('start.html') ;
    window.close();
@@ -12,7 +14,10 @@ function goInit(){
 document.addEventListener("DOMContentLoaded", function(e){
    document.getElementById("loginButton").addEventListener("click", function (){
    
-   localStorage.setItem('user', document.getElementById('inputEmail').value);
+    u.email = document.getElementById('inputEmail').value;
+    localStorage.setItem("uInformation", JSON.stringify(u));
+
+   
    
    });
 });

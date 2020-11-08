@@ -30,6 +30,7 @@
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/my-profile.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
 
@@ -60,12 +61,25 @@
   </div>
   
   <div class="mx-auto" style="width: 600px;" >
-    <form onsubmit=" submitDate();return false;">
+    <form onsubmit=" submitDate(); return false;">
       <div class="border border-dark rounded">
         <div class="container pt-3">
           <div class="row pb-3">
-            <img src="img/user.png"  class="mx-auto rounded-circle img-responsive" alt="Responsive image" 
-            width="90" height="90" />
+              <div class="input-group mb-3">
+                <div class=" mx-auto btn-group">
+                  <button type="button" class=" btn dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="img/user1.png"  id="imgProfile" class=" rounded-circle img-responsive" alt="Responsive image" width="90" height="90" /> 
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button" onclick="changeSexImg('male');"><img src="img/user1.png"  class="rounded-circle img-responsive" alt="Responsive image" 
+                      width="25" height="25" /></button>
+                    <button class="dropdown-item" type="button" onclick="console.log('hola'); changeSexImg('female');"><img src="img/user2.png"  class="rounded-circle img-responsive" alt="Responsive image" 
+                      width="25" height="25" /></button>
+                    <button class="dropdown-item" type="button" onclick="showModal();"> Subir una foto de perfil</button>
+                  </div>
+                </div>
+                
+              </div>
           </div>
           <div class="row pb-3">
             <div class="col ">
@@ -99,6 +113,33 @@
   </div>
 </main>
 
+  <!-- modal -->
+  <div class="modal fade" id="imgModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Arrastra tu imagen:</h5>
+          <button type="button" class="close" onclick="hideModal();" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <div class="input-group p-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="file">
+              <label class="custom-file-label" for="inputGroupFile04">Elije una imagen</label>
+            </div>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" onclick='test();' >Subir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
   
   <footer class="text-muted bg-light mb-0">
     <div class="container">
@@ -111,6 +152,12 @@
   </footer>
 
   <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
+
+
+
+
+
  
 
   <div id="spinner-wrapper">

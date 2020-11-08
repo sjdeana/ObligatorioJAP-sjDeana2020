@@ -49,7 +49,17 @@ function clearLS(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-  var email = localStorage.getItem('user');
-  document.getElementById('eUser').innerHTML = email;
+  let u = JSON.parse(localStorage.getItem("uInformation"));
   
+  let h = `<img src="`+ u.img +`"  class="rounded-circle img-responsive" alt="Responsive image" 
+  width="25" height="25" /> `;
+  if ( u.name === ""){ 
+    h += u.email;
+  document.getElementById('eUser').innerHTML = h;
+  } else {
+    h += u.name+` `+u.surname;
+    document.getElementById('eUser').innerHTML = h;
+  }
+
+
 });

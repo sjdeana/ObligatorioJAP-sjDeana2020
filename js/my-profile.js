@@ -1,8 +1,8 @@
 
 
 
-var u = { name: "", surname:"" , age: 0, tel: "", email:""};
-var userJS
+var u = { name: "", surname:"" , age: "", tel: "", email:"", img: "" };
+
 
 function submitDate(){
     
@@ -15,9 +15,56 @@ function submitDate(){
     localStorage.setItem("uInformation", JSON.stringify(u));
     prueba = JSON.parse(localStorage.getItem("uInformation"));
     console.log(prueba);
-  
+
+    location.reload();
     return false;
 }
+
+function test() {
+    var file = document.getElementById('file').files[0];
+    var reader  = new FileReader();
+    reader.onload = function(e)  {
+        var image = document.getElementById("imgProfile");
+        image.src = e.target.result;
+        console.log(e.target.result )
+        u.img = e.target.result;
+        localStorage.setItem("uInformation", JSON.stringify(u));
+       
+     }
+     reader.readAsDataURL(file);
+     $('#imgModal').modal('hide');
+     
+     location.reload();
+     return false;
+}
+
+function changeSexImg(s){
+    if (s==="male"){
+        u.img = "img/user1.png";
+    } else {
+        u.img = "img/user2.png";
+        
+    }
+    localStorage.setItem("uInformation", JSON.stringify(u));
+    location.reload();
+    return false;
+}
+
+function showModal(){
+    $('#imgModal').modal('show');
+}
+
+function hideModal(){
+    $('#imgModal').modal('hide');
+}
+
+$('#file').on('change',function(){
+    //get the file name
+    var fileName = $(this).val();
+    //replace the "Choose a file" label
+    $(this).next('.custom-file-label').html(fileName);
+})
+
 
 
 
@@ -34,6 +81,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
         document.getElementById('ageId').value = u.age;
         document.getElementById('telId').value = u.tel;
         document.getElementById('emailId').value = u.email;
+        document.getElementById("imgProfile").src = u.img;
+       
+
     }
+
+
 
 });
