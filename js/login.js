@@ -1,4 +1,4 @@
-var u = { name: "", surname:"" , age: "", tel: "", email:"", img: "img/user1.png" };
+var u = { name: "", surname:" " , age: "", tel: "", email:"", img: "img/user1.png" };
 
 function goInit(){
    window.open('start.html') ;

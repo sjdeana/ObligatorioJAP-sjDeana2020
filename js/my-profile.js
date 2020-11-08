@@ -58,6 +58,17 @@ function hideModal(){
     $('#imgModal').modal('hide');
 }
 
+function checkAge(){
+    if( document.getElementById("ageId").value < 18){
+        alert('La edad tiene que ser mayor a 18');
+        u.age = "";
+        localStorage.setItem("uInformation", JSON.stringify(u));
+        document.getElementById('ageId').value = u.age;
+        
+    }
+   
+}
+
 $('#file').on('change',function(){
     //get the file name
     var fileName = $(this).val();
